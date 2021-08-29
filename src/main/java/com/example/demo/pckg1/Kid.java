@@ -3,6 +3,7 @@ package com.example.demo.pckg1;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,7 +19,7 @@ public class Kid {
 	@Field
 	private Gender gender;
 	@Field
-	private ArrayList<String> activeCourses;
+	private ArrayList<String> activeCourses=new ArrayList<String>();
 	@Field
 	private ArrayList<String> completedCourses;
 	@Field
@@ -43,9 +44,10 @@ public class Kid {
 		this.fullName = fullName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
-		activeCourses = new ArrayList<String>();
+	//	activeCourses = new ArrayList<String>();
 		completedCourses = new ArrayList<String>();
 		activeDate = new Date();
+		this.status = Status.Active;
 	}
 	public String getFullName() {
 		return fullName;
@@ -129,5 +131,21 @@ public class Kid {
 		Kid kid = new Kid("SSS", new Date(1995, 6, 4),Gender.Boy);
 		System.out.println("mutlaq"+ kid.getActiveDate().toString());
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Kid other = (Kid) obj;
+		return Objects.equals(id, other.id);
+	}
 
+	
 }

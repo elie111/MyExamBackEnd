@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+@Document 
 public class Parent {
 	@Id
 	private String id;
@@ -27,7 +27,7 @@ public class Parent {
 	@Field
 	private Status active;  
 	@Field
-	private List <String> kids;
+	private List <String> kids=new ArrayList<>();
 	//@Field
 	//private List <Bills> bill;
 	@Field
@@ -45,7 +45,7 @@ public class Parent {
 		this.email = email;
 		this.password = password;
 		active = Status.Active; 
-		this.kids = new ArrayList<>();
+		//this.kids = new ArrayList<>();
 		activeDate = new Date(); 
 	}
 
